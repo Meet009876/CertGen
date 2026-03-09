@@ -1,0 +1,139 @@
+{
+  "name": "example Template",
+  "base_pdf_asset_id": "sample_pdf_asset_123",
+  "base_pdf_width": 612.0,
+  "base_pdf_height": 792.0,
+  "metadata": {
+    "elements": [
+      {
+        "id": "header-title",
+        "type": "static_text",
+        "position": {
+          "x": 50.0,
+          "y": 750.0
+        },
+        "content": "INVOICE",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 28.0,
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "color": "#000000",
+          "alignment": "left",
+          "line_height": 1.2,
+          "letter_spacing": 0.0,
+          "rotation": 0.0,
+          "opacity": 1.0
+        }
+      },
+      {
+        "id": "label-invoice-number",
+        "type": "static_text",
+        "position": {
+          "x": 50.0,
+          "y": 700.0
+        },
+        "content": "Invoice Number:",
+        "formatting": {
+          "font_family": "Helvetica",
+          "font_size": 12.0,
+          "bold": false,
+          "color": "#333333"
+        }
+      },
+      {
+        "id": "var-invoice-number",
+        "type": "text_variable",
+        "position": {
+          "x": 180.0,
+          "y": 700.0
+        },
+        "variable_name": "invoice_number",
+        "default_value": "INV-0000",
+        "formatting": {
+          "font_family": "Courier",
+          "font_size": 12.0,
+          "color": "#000000"
+        },
+        "max_length": 50
+      },
+      {
+        "id": "label-customer-name",
+        "type": "static_text",
+        "position": {
+          "x": 50.0,
+          "y": 670.0
+        },
+        "content": "Customer Name:",
+        "formatting": {
+          "font_family": "Helvetica",
+          "font_size": 12.0,
+          "color": "#333333"
+        }
+      },
+      {
+        "id": "var-customer-name",
+        "type": "text_variable",
+        "position": {
+          "x": 180.0,
+          "y": 670.0
+        },
+        "variable_name": "customer_name",
+        "default_value": "John Doe",
+        "formatting": {
+          "font_family": "Helvetica",
+          "font_size": 12.0,
+          "color": "#000000"
+        },
+        "max_length": 100
+      },
+      {
+        "id": "company-logo",
+        "type": "fixed_image",
+        "position": {
+          "x": 450.0,
+          "y": 720.0
+        },
+        "image_url": "https://storage.example.com/logos/company-logo.png",
+        "properties": {
+          "width": 120.0,
+          "height": 60.0,
+          "maintain_aspect_ratio": true,
+          "opacity": 1.0,
+          "rotation": 0.0
+        }
+      },
+      {
+        "id": "signature-placeholder",
+        "type": "image_placeholder",
+        "position": {
+          "x": 50.0,
+          "y": 100.0
+        },
+        "placeholder_name": "customer_signature",
+        "properties": {
+          "width": 200.0,
+          "height": 80.0,
+          "maintain_aspect_ratio": false,
+          "opacity": 1.0,
+          "rotation": 0.0
+        }
+      },
+      {
+        "id": "label-signature",
+        "type": "static_text",
+        "position": {
+          "x": 50.0,
+          "y": 80.0
+        },
+        "content": "Customer Signature",
+        "formatting": {
+          "font_family": "Helvetica",
+          "font_size": 10.0,
+          "color": "#666666"
+        }
+      }
+    ]
+  }
+}

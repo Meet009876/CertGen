@@ -1,0 +1,21 @@
+{
+    "certificate_number": "CERT-2026-001",
+    "date": "14 February 2026",
+    "diamond_specs": {
+        "Nature": "Natural Diamond",
+        "Shape / Cut": "Round Brilliant",
+        "Measurements": "(4.31-4.25) x 2.51 mm",
+        "Weight": "0.27 ct",
+        "Color": "G",
+        "Clarity": "SI1",
+        "Fluorescence": "Slight Yellowish",
+        "Cut Grade": "Good",
+        "Proportions": "Good",
+        "Symmetry": "Fair",
+        "Polish": "Fair"
+    },
+    "diamond_image": "diamond.png",
+    "owner_name": "Rahul Sharma",
+    "owner_phone": "+91 9876543210",
+    "owner_email": "rahul.sharma@email.com"
+}

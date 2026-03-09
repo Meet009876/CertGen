@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: pdf_template_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pdfuser
+      POSTGRES_PASSWORD: pdfpassword
+      POSTGRES_DB: pdf_templates
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U pdfuser -d pdf_templates" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdf_template_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "5678:5678"
+    environment:
+      - PYDEVD_DISABLE_FILE_VALIDATION=1
+      - DATABASE_URL=postgresql://pdfuser:pdfpassword@db:5432/pdf_templates
+      - APP_ENV=development
+      - APP_DEBUG=True
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - CORS_ORIGINS=["http://localhost:3000", "http://localhost:5173"]
+      # Asset hosting — Dropbox
+      - ASSET_HOST_PROVIDER=dropbox
+      - DROPBOX_APP_KEY=jgbh0s52wwe2tmr
+      - DROPBOX_APP_SECRET=lyvosap3ptdjhio
+      - DROPBOX_REFRESH_TOKEN=nOrxq8zmyc4AAAAAAAAAAS-oZAjEfO5rtzUiprJNxUkkMCJ799vz9tIsI6312CTx
+      - DROPBOX_UPLOAD_FOLDER=/pdf-template-uploader
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app # Mount app directory for hot reload
+      - ./uploads:/app/uploads # Persist uploads
+    command: python -m debugpy --listen 0.0.0.0:5678 -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Next.js Frontend (Dev Mode - with hot reload)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pdf_template_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Used by next.config.ts server-side rewrites to reach the backend container
+      - INTERNAL_API_URL=http://app:8000
+      # Used by the browser (client-side fetch calls) - still hits localhost
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    volumes:
+      # Hot reload: mount source so changes reflect without rebuilding
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - app
+
+  # pgAdmin (Optional - for database management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pdf_template_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local

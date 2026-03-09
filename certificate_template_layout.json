@@ -1,0 +1,361 @@
+{
+  "name": "MGTL Gemston",
+  "base_pdf_url": "https://raw.githubusercontent.com/meet-agarwal/ebaytemplate/2ecf7883296e34bb352fa354989c06071818d07f/.github/workflows/basePdftrail.pdf",
+  "base_pdf_width": 612.0,
+  "base_pdf_height": 396.0,
+  "metadata": {
+    "elements": [
+      {
+        "id": "mgtl-logo",
+        "type": "fixed_image",
+        "position": { "x": 30.0, "y": 315.0 },
+        "image_url": "https://i.postimg.cc/wvKH76TS/logobase-PDFnew.png",
+        "properties": {
+          "width": 180.0,
+          "height": 60.0,
+          "maintain_aspect_ratio": true
+        }
+      },
+      {
+        "id": "title-certificate",
+        "type": "static_text",
+        "position": { "x": 220.0, "y": 350.0 },
+        "content": "CERTIFICATE",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 28.0,
+          "color": "#D4AF37"
+        }
+      },
+      {
+        "id": "subtitle-report",
+        "type": "static_text",
+        "position": { "x": 220.0, "y": 325.0 },
+        "content": "Gemstone Report",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 22.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "cerrified-gov-report",
+        "type": "static_text",
+        "position": { "x": 240.0, "y": 315.0 },
+        "content": "[An ISO 9001:2026 Certified]",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "regestriation-details",
+        "type": "static_text",
+        "position": { "x": 180.0, "y": 305.0 },
+        "content": "Resgistered Under The Trademark with Govt. of India",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "name-label",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 275.0 },
+        "content": "Name",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "name-var",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 275.0 },
+        "variable_name": "name",
+        "default_value": "Meet",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-report-no",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 240.0 },
+        "content": "REPORT NO.",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-report-no",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 240.0 },
+        "variable_name": "report_number",
+        "default_value": "MGTLSHRIMGP000",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-weight",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 215.0 },
+        "content": "WEIGHT",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-weight",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 215.0 },
+        "variable_name": "weight",
+        "default_value": "10.00 Ct.",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-shape",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 190.0 },
+        "content": "SHAPE/CUT",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-shape",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 190.0 },
+        "variable_name": "shape_cut",
+        "default_value": "RBC",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "finish-label",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 165.0 },
+        "content": "FINISH",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-finish",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 165.0 },
+        "variable_name": "finish",
+        "default_value": "very Good",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-colour",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 140.0 },
+        "content": "COLOUR",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-colour",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 140.0 },
+        "variable_name": "colour_grade",
+        "default_value": "D - E",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "clarity-label",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 115.0 },
+        "content": "CLARITY",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-clarity",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 115.0 },
+        "variable_name": "clarity_grade",
+        "default_value": "VVS",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "dimensions-label",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 90.0 },
+        "content": "DIMENSIONS",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-dimensions",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 90.0 },
+        "variable_name": "dimensions",
+        "default_value": "4.74 * 3.11 mm",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "inclusions-label",
+        "type": "static_text",
+        "position": { "x": 120.0, "y": 65.0 },
+        "content": "INCLUSIONS",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "var-inclusions",
+        "type": "text_variable",
+        "position": { "x": 210.0, "y": 65.0 },
+        "variable_name": "inclusions",
+        "default_value": "naturals",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 12.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "gemstone-photo",
+        "type": "image_placeholder",
+        "position": { "x": 480.0, "y": 200.0 },
+        "placeholder_name": "gemstone_image",
+        "properties": {
+          "width": 100.0,
+          "height": 100.0,
+          "maintain_aspect_ratio": true
+        }
+      },
+      {
+        "id": "label-natural-diamond",
+        "type": "static_text",
+        "position": { "x": 460.0, "y": 175.0 },
+        "content": "NATURAL DIAMOND",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 10.0,
+          "underline": true,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "sig-chief-gemmologist",
+        "type": "image_placeholder",
+        "position": { "x": 480.0, "y": 100.0 },
+        "placeholder_name": "signature_chief",
+        "properties": {
+          "width": 80.0,
+          "height": 40.0,
+          "maintain_aspect_ratio": true
+        }
+      },
+      {
+        "id": "label-chief-name",
+        "type": "static_text",
+        "position": { "x": 480.0, "y": 90.0 },
+        "content": "Manish Jain",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 10.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-chief-title",
+        "type": "static_text",
+        "position": { "x": 450.0, "y": 75.0 },
+        "content": "Chief Gemmologist",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 11.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "sig-gemmologist",
+        "type": "image_placeholder",
+        "position": { "x": 480.0, "y": 50.0 },
+        "placeholder_name": "signature_emplyee",
+        "properties": {
+          "width": 80.0,
+          "height": 40.0,
+          "maintain_aspect_ratio": true
+        }
+      },
+      {
+        "id": "label-name",
+        "type": "static_text",
+        "position": { "x": 480.0, "y": 25.0 },
+        "content": "Manish Jain",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 10.0,
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "label-title",
+        "type": "static_text",
+        "position": { "x": 450.0, "y": 10.0 },
+        "content": "Gemmologist",
+        "formatting": {
+          "font_family": "Helvetica-Bold",
+          "font_size": 11.0,
+          "color": "#000000"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testSuite name="SessionBasedAuthentication" description="Manual test cases for Login and Logout functionality">
+    
+    <!-- Positive Scenarios -->
+    <testCase id="TC001" name="Valid Login">
+        <description>Verify user can login with valid credentials</description>
+        <precondition>User 'user1' exists with password 'user123'</precondition>
+        <steps>
+            <step>Access Swagger UI /docs or use Postman</step>
+            <step>Send POST /api/auth/login with {"username": "user1", "password": "user123"}</step>
+        </steps>
+        <expectedResult>
+            <status>200 OK</status>
+            <body>{"message": "Login successful", "user": {"username": "user1", ...}}</body>
+            <cookie>session_id cookie is set (HttpOnly)</cookie>
+            <database>New row created in 'sessions' table for user1</database>
+        </expectedResult>
+    </testCase>
+
+    <testCase id="TC002" name="Valid Logout">
+        <description>Verify user can logout and session is invalidated</description>
+        <precondition>User is logged in (session_id cookie exists)</precondition>
+        <steps>
+            <step>Send POST /api/auth/logout</step>
+        </steps>
+        <expectedResult>
+            <status>200 OK</status>
+            <body>{"message": "Logged out successfully"}</body>
+            <cookie>session_id cookie is cleared (Max-Age=0)</cookie>
+            <database>Session row is deleted from 'sessions' table</database>
+        </expectedResult>
+    </testCase>
+
+    <testCase id="TC003" name="Access Protected Route (Logged In)">
+        <description>Verify access to protected resource with valid session</description>
+        <precondition>User is logged in</precondition>
+        <steps>
+            <step>Send GET /api/templates/</step>
+        </steps>
+        <expectedResult>
+            <status>200 OK</status>
+            <body>List of templates</body>
+        </expectedResult>
+    </testCase>
+
+    <!-- Negative Scenarios -->
+    <testCase id="TC004" name="Invalid Login - Wrong Password">
+        <description>Verify login fails with incorrect password</description>
+        <steps>
+            <step>Send POST /api/auth/login with {"username": "user1", "password": "wrongpassword"}</step>
+        </steps>
+        <expectedResult>
+            <status>401 Unauthorized</status>
+            <body>{"detail": "Invalid username or password"}</body>
+            <cookie>No session_id cookie set</cookie>
+            <database>No new session created</database>
+        </expectedResult>
+    </testCase>
+
+    <testCase id="TC005" name="Invalid Login - Non-existent User">
+        <description>Verify login fails with unknown username</description>
+        <steps>
+            <step>Send POST /api/auth/login with {"username": "nobody", "password": "any"}</step>
+        </steps>
+        <expectedResult>
+            <status>401 Unauthorized</status>
+            <body>{"detail": "Invalid username or password"}</body>
+        </expectedResult>
+    </testCase>
+
+    <testCase id="TC006" name="Access Protected Route (Unauthenticated)">
+        <description>Verify access denied without session cookie</description>
+        <precondition>No session cookie or cookies cleared</precondition>
+        <steps>
+            <step>Send GET /api/templates/</step>
+        </steps>
+        <expectedResult>
+            <status>401 Unauthorized</status>
+            <body>{"detail": "Not authenticated. Please login."}</body>
+        </expectedResult>
+    </testCase>
+    
+    <testCase id="TC007" name="Access Protected Route (After Logout)">
+        <description>Verify access denied immediately after logout</description>
+        <precondition>User logged in, then logged out</precondition>
+        <steps>
+            <step>Send GET /api/templates/ with the OLD cookie (if manual)</step>
+        </steps>
+        <expectedResult>
+            <status>401 Unauthorized</status>
+            <body>{"detail": "Not authenticated..." or "Session expired..."}</body>
+        </expectedResult>
+    </testCase>
+
+    <!-- Edge Cases & Security -->
+    <testCase id="TC008" name="Multiple Concurrent Sessions">
+        <description>Verify same user can have multiple active sessions (different devices)</description>
+        <steps>
+            <step>Login as 'user1' (Session A)</step>
+            <step>Login as 'user1' again (Session B) - simulate different browser</step>
+            <step>Check 'sessions' table</step>
+        </steps>
+        <expectedResult>
+            <database>Two distinct session rows for 'user1' exist</database>
+            <behavior>Both Session A and Session B can access protected routes</behavior>
+        </expectedResult>
+    </testCase>
+    
+    <testCase id="TC009" name="SQL Injection Login Attempt">
+        <description>Verify login is resilient to SQL injection</description>
+        <steps>
+            <step>Send POST /api/auth/login with {"username": "' OR '1'='1", "password": "..."}</step>
+        </steps>
+        <expectedResult>
+            <status>401 Unauthorized</status>
+            <body>{"detail": "Invalid username or password"}</body>
+            <database>No unauthorized access</database>
+        </expectedResult>
+    </testCase>
+    
+</testSuite>
